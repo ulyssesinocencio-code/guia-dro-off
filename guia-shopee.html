@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updates Full - Guia Interativo de Drop-off</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'shopee-orange': '#ee4d2d',
+                        'shopee-purple': '#540d6e',
+                        'soft-gray': '#f5f5f5',
+                        'accent-orange': '#ff7a00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Shopee Inspired Palette -->
+    <!-- Application Structure Plan: A task-oriented interactive guide with a two-column layout. Left column for navigation (Visão Geral, Pré-requisitos, Processo, Manuais) and right for dynamic content. This structure was chosen to break down the procedural information and supplementary materials into manageable, distinct sections. The process is visualized as an interactive flowchart where clicking a step reveals its details, which is more intuitive and less overwhelming than a static list for understanding a multi-actor workflow. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: General instructions -> Goal: Inform -> Method: Introductory text -> Interaction: None.
+        - Report Info: Prerequisites list -> Goal: Organize/Inform -> Method: Interactive checklist (HTML/CSS) -> Interaction: Visual feedback on hover to engage the user -> Justification: A checklist is the most direct format for requirements.
+        - Report Info: Step-by-step process -> Goal: Explain Flow/Change -> Method: Interactive vertical flowchart (HTML/Tailwind) distinguishing 'Seller' and 'Indústria' roles -> Interaction: Click a step to highlight it and display its specific details -> Justification: A visual, interactive flowchart clarifies responsibilities and sequence far better than text alone, preventing information overload.
+        - Report Info: User manuals -> Goal: Provide Resources -> Method: Hyperlinked list in a new section -> Interaction: Click link to external document -> Justification: The most direct way to provide access to external files.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-button.active {
+            background-color: #ee4d2d;
+            color: white;
+        }
+        .step-card.active {
+            border-color: #ee4d2d;
+            box-shadow: 0 4px 12px rgba(238, 77, 45, 0.2);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-soft-gray text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Guia do Processo de Drop-off Full</h1>
+            <p class="text-gray-600 mt-2">Um guia interativo para envios via indústria.</p>
+        </header>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <aside class="md:w-1/4">
+                <nav class="sticky top-8 bg-white p-4 rounded-lg shadow-sm">
+                    <ul class="space-y-2">
+                        <li><button data-target="overview" class="nav-button w-full text-left p-3 rounded-md font-medium text-gray-700 hover:bg-soft-gray transition-colors duration-200 active">Visão Geral</button></li>
+                        <li><button data-target="prerequisites" class="nav-button w-full text-left p-3 rounded-md font-medium text-gray-700 hover:bg-soft-gray transition-colors duration-200">Pré-requisitos</button></li>
+                        <li><button data-target="process" class="nav-button w-full text-left p-3 rounded-md font-medium text-gray-700 hover:bg-soft-gray transition-colors duration-200">Processo Passo a Passo</button></li>
+                        <li><button data-target="manuals" class="nav-button w-full text-left p-3 rounded-md font-medium text-gray-700 hover:bg-soft-gray transition-colors duration-200">Manuais do Usuário</button></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="md:w-3/4">
+                <div id="overview" class="content-section bg-white p-6 md:p-8 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold mb-4 text-shopee-orange">Bem-vindo ao Guia de Drop-off</h2>
+                    <p class="text-gray-700 mb-4">
+                        Esta aplicação foi criada para simplificar o entendimento do processo de envio de produtos para o nosso centro de distribuição (CD) diretamente pela indústria. O objetivo é fornecer um passo a passo claro e conciso, garantindo que todas as etapas e pré-requisitos sejam cumpridos corretamente para uma operação ágil e sem falhas.
+                    </p>
+                    <p class="text-gray-700">
+                        Use o menu à esquerda para navegar entre a visão geral, a lista de pré-requisitos essenciais e o fluxo interativo do processo. Cada seção foi desenhada para focar nas informações mais importantes para você, seller.
+                    </p>
+                </div>
+
+                <div id="prerequisites" class="content-section bg-white p-6 md:p-8 rounded-lg shadow-sm hidden">
+                    <h2 class="text-2xl font-bold mb-6 text-shopee-orange">Checklist de Pré-requisitos</h2>
+                    <p class="text-gray-700 mb-6">
+                        Antes de iniciar o agendamento do drop-off, é fundamental garantir que todos os pré-requisitos abaixo sejam atendidos. Esta lista serve como um guia de verificação para assegurar que tanto o seller quanto a indústria estejam preparados para o envio, evitando atrasos e problemas na recepção dos produtos.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <span class="text-shopee-orange font-bold text-xl mr-4">1</span>
+                            <div>
+                                <h3 class="font-semibold">Informar ao time do Full</h3>
+                                <p class="text-sm text-gray-600">É obrigatório notificar a equipe do Full que o envio será realizado via indústria.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <span class="text-shopee-orange font-bold text-xl mr-4">2</span>
+                            <div>
+                                <h3 class="font-semibold">Cadastro de EAN</h3>
+                                <p class="text-sm text-gray-600">Todos os itens enviados devem ter o código EAN devidamente cadastrado na Central do Vendedor e no SBS.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <span class="text-shopee-orange font-bold text-xl mr-4">3</span>
+                            <div>
+                                <h3 class="font-semibold">EAN Visível para Bipagem</h3>
+                                <p class="text-sm text-gray-600">O código EAN deve estar impresso e visível na embalagem de cada produto unitário para permitir a leitura no CD.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <span class="text-shopee-orange font-bold text-xl mr-4">4</span>
+                            <div>
+                                <h3 class="font-semibold">Envio das Etiquetas Master</h3>
+                                <p class="text-sm text-gray-600">O seller precisa gerar as etiquetas da caixa master no sistema e enviá-las para a indústria.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <span class="text-shopee-orange font-bold text-xl mr-4">5</span>
+                            <div>
+                                <h3 class="font-semibold">Etiquetagem da Caixa Master</h3>
+                                <p class="text-sm text-gray-600">A caixa master, contendo os itens unitários, deve ser enviada com a etiqueta da Shopee colada.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <span class="text-shopee-orange font-bold text-xl mr-4">6</span>
+                            <div>
+                                <h3 class="font-semibold">Cadastro do Veículo de Entrega</h3>
+                                <p class="text-sm text-gray-600">A indústria é responsável por cadastrar o veículo que fará a entrega no aplicativo do CD.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="process" class="content-section bg-white p-6 md:p-8 rounded-lg shadow-sm hidden">
+                     <h2 class="text-2xl font-bold mb-4 text-shopee-orange">Processo Passo a Passo</h2>
+                    <p class="text-gray-700 mb-8">
+                        Esta seção detalha o fluxo de trabalho completo para o drop-off, desde o agendamento inicial pelo seller até a entrega final pela indústria. O processo é dividido entre as responsabilidades do **Seller** e da **Indústria**. Clique em cada etapa do fluxograma para ver os detalhes correspondentes ao lado.
+                    </p>
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="lg:w-1/2">
+                            <div id="steps-container" class="space-y-4">
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <div id="step-details" class="sticky top-8 bg-gray-50 p-6 rounded-lg min-h-[200px]">
+                                <h3 id="details-title" class="font-bold text-lg mb-2 text-gray-900">Selecione uma etapa</h3>
+                                <p id="details-description" class="text-gray-700">Clique em uma das etapas à esquerda para ver os detalhes da ação e o responsável.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="manuals" class="content-section bg-white p-6 md:p-8 rounded-lg shadow-sm hidden">
+                    <h2 class="text-2xl font-bold mb-6 text-shopee-orange">Manuais do Usuário</h2>
+                    <p class="text-gray-700 mb-6">
+                        Acesse os manuais de instrução completos para realizar o cadastro de motoristas e a criação de solicitações de agendamento de drop-off.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Manual do Usuário: Cadastro de Motorista</h3>
+                            <a href="https://drive.google.com/file/d/1rW7SYJmzGSOeWCqBvch5_pftzFhhFxu3/view" target="_blank" class="text-shopee-orange hover:underline">
+                                Acessar Manual do Motorista
+                            </a>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Manual do Usuário: Cadastro de Solicitação</h3>
+                            <a href="https://drive.google.com/file/d/1B8xsID6f5yc0wSkyBISFSkVc7Io8Hs2f/view" target="_blank" class="text-shopee-orange hover:underline">
+                                Acessar Manual de Solicitação
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const contentSections = document.querySelectorAll('.content-section');
+            const stepsContainer = document.getElementById('steps-container');
+            const detailsTitle = document.getElementById('details-title');
+            const detailsDescription = document.getElementById('details-description');
+
+            const processSteps = [
+                {
+                    id: 1,
+                    title: 'Agendamento de Drop-off',
+                    responsible: 'Seller',
+                    description: 'O seller inicia o processo realizando o agendamento do drop-off através do sistema da Shopee.'
+                },
+                {
+                    id: 2,
+                    title: 'Emissão de NF e Etiquetas',
+                    responsible: 'Seller',
+                    description: 'Após a aprovação do agendamento, o seller deve emitir a Nota Fiscal (NF) referente aos produtos e gerar as etiquetas de envio.'
+                },
+                {
+                    id: 3,
+                    title: 'Geração e Envio de Etiquetas Master',
+                    responsible: 'Seller',
+                    description: 'O seller gera as etiquetas específicas para a caixa master e as envia para a indústria, que irá preparar os pacotes.'
+                },
+                {
+                    id: 4,
+                    title: 'Etiquetagem da Caixa Master',
+                    responsible: 'Indústria',
+                    description: 'A indústria recebe as etiquetas e é responsável por aplicá-las corretamente em cada caixa master que contém os produtos unitários.'
+                },
+                {
+                    id: 5,
+                    title: 'Entrega dos Itens no CD',
+                    responsible: 'Indústria',
+                    description: 'A indústria transporta os itens até o Centro de Distribuição (CD). É crucial levar a Nota Fiscal do agendamento impressa para a conferência na entrada.'
+                }
+            ];
+
+            function renderProcessSteps() {
+                if (!stepsContainer) return;
+                stepsContainer.innerHTML = '';
+                processSteps.forEach(step => {
+                    const stepCard = document.createElement('div');
+                    stepCard.className = 'step-card border-2 border-gray-200 p-4 rounded-lg cursor-pointer transition-all duration-200 hover:border-shopee-orange hover:shadow-md';
+                    stepCard.dataset.stepId = step.id;
+                    
+                    let responsibleTagColor = step.responsible === 'Seller' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800';
+
+                    stepCard.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-semibold text-gray-800">${step.id}. ${step.title}</h4>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full ${responsibleTagColor}">${step.responsible}</span>
+                        </div>
+                    `;
+                    stepsContainer.appendChild(stepCard);
+                });
+            }
+            
+            function updateStepDetails(stepId) {
+                const step = processSteps.find(s => s.id == stepId);
+                if (step) {
+                    detailsTitle.textContent = step.title;
+                    detailsDescription.innerHTML = `
+                        <strong class="font-semibold">Ação:</strong> ${step.description}<br><br>
+                        <strong class="font-semibold">Responsável:</strong> ${step.responsible}
+                    `;
+                }
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            if (stepsContainer) {
+                renderProcessSteps();
+                const stepCards = document.querySelectorAll('.step-card');
+
+                stepCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const stepId = card.dataset.stepId;
+                        
+                        stepCards.forEach(c => c.classList.remove('active'));
+                        card.classList.add('active');
+
+                        updateStepDetails(stepId);
+                    });
+                });
+                
+                if (stepCards.length > 0) {
+                    stepCards[0].click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
